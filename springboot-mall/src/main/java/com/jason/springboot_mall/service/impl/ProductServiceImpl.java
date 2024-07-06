@@ -1,10 +1,11 @@
-package com.jason.springboot_mall.service;
+package com.jason.springboot_mall.service.impl;
 
 import com.jason.springboot_mall.constant.ProductCategory;
 import com.jason.springboot_mall.dao.ProductDao;
 import com.jason.springboot_mall.dto.ProductQueryParams;
 import com.jason.springboot_mall.dto.ProductRequest;
 import com.jason.springboot_mall.model.Product;
+import com.jason.springboot_mall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
