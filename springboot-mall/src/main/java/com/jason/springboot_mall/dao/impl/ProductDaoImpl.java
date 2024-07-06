@@ -45,7 +45,8 @@ public class ProductDaoImpl implements ProductDao
             // 模糊查詢一定要寫在map 值裡面
             map.put("search", "%" + productQueryParams.getSearch() + "%");
         }
-
+        // 因為 OrderBy 和 Sort 有預設值所以不需要判斷是否會為null
+        sql= sql + " ORDER BY " + productQueryParams.getOrderBy() + " " + productQueryParams.getSort();
         List<Product> productList = namedParameterJdbcTemplate.query(sql, map, new ProductMapper());
 
         return productList;
