@@ -2,6 +2,7 @@ package com.jason.springboot_mall.service;
 
 import com.jason.springboot_mall.constant.ProductCategory;
 import com.jason.springboot_mall.dao.ProductDao;
+import com.jason.springboot_mall.dto.ProductQueryParams;
 import com.jason.springboot_mall.dto.ProductRequest;
 import com.jason.springboot_mall.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class ProductServiceImpl implements ProductService
     ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category, String search) {
-        return productDao.getProducts(category, search);
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Override
