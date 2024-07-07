@@ -68,6 +68,7 @@ public class UserDaoImpl implements UserDao
         }
     }
 
+    // create 要返回Integer
     @Override
     public Integer createUser(UserRegisterRequest userRegisterRequest) {
         String sql="INSERT INTO  user( email, password, created_date, last_modified_date ) " +

@@ -113,6 +113,7 @@ public class ProductDaoImpl implements ProductDao
 
     }
 
+    // create 要返回Integer
     @Override
     public Integer createProduct(ProductRequest productRequest) {
         String sql="INSERT INTO  product( product_name, category, image_url, price, " +

@@ -1,6 +1,7 @@
 package com.jason.springboot_mall.service.impl;
 
 import com.jason.springboot_mall.dao.UserDao;
+import com.jason.springboot_mall.dto.UserLoginRequest;
 import com.jason.springboot_mall.dto.UserRegisterRequest;
 import com.jason.springboot_mall.model.User;
 import com.jason.springboot_mall.service.UserService;
@@ -25,7 +26,8 @@ public class UserServiceImpl implements UserService
         return userDao.getUserById(userId);
     }
 
-    // 命名程 register 而不命名成 createUser 因為不是單純去實作創建帳號而已
+    // create 要返回Integer
+    // 命名成 register 而不命名成 createUser 因為不是單純去實作創建帳號而已
     @Override
     public Integer register(UserRegisterRequest userRegisterRequest) {
 
@@ -37,7 +39,30 @@ public class UserServiceImpl implements UserService
             log.warn("該 email {} 已經被註冊", userRegisterRequest.getEmail());
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        // 成功註冊
+        // 創建帳號
+        // create 要返回Integer
         return userDao.createUser(userRegisterRequest);
+    }
+
+    @Override
+    public User login(UserLoginRequest userLoginRequest) {
+        User user=userDao.getUserByEmail(userLoginRequest.getEmail());
+
+        if (user== null)
+        {
+            log.warn("該 email {} 尚未註冊", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if(user.getPassword().equals(userLoginRequest.getPassword()))
+        {
+            return user;
+        }
+        else
+        {
+            log.warn("該 email {} 的密碼不正確", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+        }
     }
 }
