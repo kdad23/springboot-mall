@@ -23,7 +23,7 @@ public class ProductController
 {
     @Autowired
     private ProductService productService;
-
+    // 不管有沒有查詢到Products 都回傳OK
     @GetMapping("/products")
     public ResponseEntity<Page<Product>> getProducts(
             // 查詢條件 Filtering
@@ -107,6 +107,7 @@ public class ProductController
 
     }
 
+    // 只要確定資料消失不見就表示成功
     @DeleteMapping("/products/{productId}")
     public ResponseEntity<?> deleteProduct( @PathVariable Integer productId)
     {
