@@ -1,11 +1,9 @@
 package com.jason.springboot_mall.dao.impl;
 
-import com.jason.springboot_mall.dao.Angular_ToDo_NoteDao;
-import com.jason.springboot_mall.dto.Angular_NoteRequest;
-import com.jason.springboot_mall.model.Angular_Note;
-import com.jason.springboot_mall.model.Product;
-import com.jason.springboot_mall.rowmapper.Angular_Note_RowMapper;
-import com.jason.springboot_mall.rowmapper.ProductMapper;
+import com.jason.springboot_mall.dao.AngularToDoNoteDao;
+import com.jason.springboot_mall.dto.AngularNoteRequest;
+import com.jason.springboot_mall.model.AngularNote;
+import com.jason.springboot_mall.rowmapper.AngularNoteRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -19,17 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class Angular_ToDo_NoteDaoImpl implements Angular_ToDo_NoteDao
+public class AngularToDoNoteDaoImpl implements AngularToDoNoteDao
 {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     @Override
-    public Integer countNote(Angular_NoteRequest angular_noteRequest) {
+    public Integer countNote(AngularNoteRequest angular_noteRequest) {
         return null;
     }
 
     @Override
-    public List<Angular_Note> getNotes()
+    public List<AngularNote> getNotes()
     {
         String sql="SELECT  note_id, title,  " +
                 "description, created_date, " +
@@ -38,23 +36,23 @@ public class Angular_ToDo_NoteDaoImpl implements Angular_ToDo_NoteDao
 
         Map<String, Object>map=new HashMap<>();
 
-        List<Angular_Note> noteList = namedParameterJdbcTemplate.query(sql, map,
-                new Angular_Note_RowMapper());
+        List<AngularNote> noteList = namedParameterJdbcTemplate.query(sql, map,
+                new AngularNoteRowMapper());
 
         return noteList;
     }
 
 
     @Override
-    public Angular_Note getNoteById(Integer noteId) {
+    public AngularNote getNoteById(Integer noteId) {
         String sql="SELECT  note_id, title, description, " +
                 "created_date, last_modified_date " +
                 " FROM Angular_ToDo_note WHERE note_id=:noteId ";
 
         Map<String, Object>map=new HashMap<>();
         map.put("noteId", noteId);
-        List<Angular_Note> noteList = namedParameterJdbcTemplate.query(sql, map,
-                new Angular_Note_RowMapper());
+        List<AngularNote> noteList = namedParameterJdbcTemplate.query(sql, map,
+                new AngularNoteRowMapper());
 
         if(!noteList.isEmpty())
         {
@@ -68,15 +66,15 @@ public class Angular_ToDo_NoteDaoImpl implements Angular_ToDo_NoteDao
 
 
     @Override
-    public Angular_Note getNoteByTitle(String noteTitle) {
+    public AngularNote getNoteByTitle(String noteTitle) {
         String sql="SELECT  note_id, title, description, " +
                 "created_date, last_modified_date " +
                 " FROM Angular_ToDo_note WHERE title=:noteTitle ";
 
         Map<String, Object>map=new HashMap<>();
         map.put("noteTitle", noteTitle);
-        List<Angular_Note> noteList = namedParameterJdbcTemplate.query(sql, map,
-                new Angular_Note_RowMapper());
+        List<AngularNote> noteList = namedParameterJdbcTemplate.query(sql, map,
+                new AngularNoteRowMapper());
 
         if(!noteList.isEmpty())
         {
@@ -89,7 +87,7 @@ public class Angular_ToDo_NoteDaoImpl implements Angular_ToDo_NoteDao
     }
 
     @Override
-    public Integer createNote(Angular_NoteRequest angular_noteRequest) {
+    public Integer createNote(AngularNoteRequest angular_noteRequest) {
         String sql="INSERT INTO  Angular_ToDo_note( title, description, " +
                 " created_date, last_modified_date )" +
                 "VALUES (:title, :description,  "+
@@ -112,7 +110,7 @@ public class Angular_ToDo_NoteDaoImpl implements Angular_ToDo_NoteDao
     }
 
     @Override
-    public void updateNote(Integer noteId, Angular_NoteRequest angular_noteRequest) {
+    public void updateNote(Integer noteId, AngularNoteRequest angular_noteRequest) {
 
         String sql="UPDATE Angular_ToDo_note SET  " +
                 "title= :title," +

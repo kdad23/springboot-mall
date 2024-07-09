@@ -1,11 +1,8 @@
 package com.jason.springboot_mall.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.jason.springboot_mall.constant.ProductCategory;
-
 import java.util.Date;
 
-public class Angular_Note
+public class AngularNote
 {
     private Integer note_id;
     private String title;

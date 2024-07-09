@@ -3,8 +3,8 @@ package com.jason.springboot_mall.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public class Angular_UserRegisterRequest {
-
+public class AngularUserLoginRequestDTO
+{
     @Email
     @NotBlank
     private String email;

@@ -1,28 +1,24 @@
-package com.jason.springboot_mall.model;
+package com.jason.springboot_mall.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
 
-public class Angular_ToDO_User
-{
-    private Integer userId;
+public class AngularUserResponseDTO {
+    @Email
+    @NotBlank
     private String email;
+    @NotBlank
     @JsonIgnore
     private String password;
+
     private Date createdDate;
     private Date lastModifiedDate;
 
     private String roles;
     private String accessToken;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public String getEmail() {
         return email;

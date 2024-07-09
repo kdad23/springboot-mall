@@ -1,13 +1,8 @@
 package com.jason.springboot_mall.dao.impl;
 
-import com.jason.springboot_mall.dao.Angular_ToDO_UserDao;
-import com.jason.springboot_mall.dto.Angular_UserRegisterRequest;
-import com.jason.springboot_mall.dto.UserRegisterRequest;
-import com.jason.springboot_mall.model.Angular_ToDO_User;
-import com.jason.springboot_mall.model.User;
-import com.jason.springboot_mall.rowmapper.Angular_UserRowMappper;
-import com.jason.springboot_mall.rowmapper.UserRowMappper;
-import com.jason.springboot_mall.service.Angular_ToDO_UserService;
+import com.jason.springboot_mall.dao.AngularToDOUserDao;
+import com.jason.springboot_mall.model.AngularToDoUser;
+import com.jason.springboot_mall.rowmapper.AngularUserRowMappper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -21,12 +16,12 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class Angular_ToDO_UserDaoImpl implements Angular_ToDO_UserDao {
+public class AngularToDoUserDaoImpl implements AngularToDOUserDao {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     @Override
-    public Angular_ToDO_User getUserById(Integer userId)
+    public AngularToDoUser getUserById(Integer userId)
     {
         String sql="SELECT  user_id, email, password, created_date,         last_modified_date , " +
                 "roles, accessToken " +
@@ -35,7 +30,7 @@ public class Angular_ToDO_UserDaoImpl implements Angular_ToDO_UserDao {
         Map<String, Object> map=new HashMap<>();
         map.put("userId", userId);
 
-        List<Angular_ToDO_User> userList = namedParameterJdbcTemplate.query(sql, map, new Angular_UserRowMappper());
+        List<AngularToDoUser> userList = namedParameterJdbcTemplate.query(sql, map, new AngularUserRowMappper());
 
         if(!userList.isEmpty())
         {
@@ -48,13 +43,13 @@ public class Angular_ToDO_UserDaoImpl implements Angular_ToDO_UserDao {
     }
 
     @Override
-    public Angular_ToDO_User getUserByEmail(String email) {
+    public AngularToDoUser getUserByEmail(String email) {
         String sql="SELECT  user_id, email, password, created_date, last_modified_date , roles, accessToken " +
                 " FROM Angular_ToDo_user WHERE email=:email ";
 
         Map<String, Object>map=new HashMap<>();
         map.put("email", email);
-        List<Angular_ToDO_User> userList = namedParameterJdbcTemplate.query(sql, map, new Angular_UserRowMappper());
+        List<AngularToDoUser> userList = namedParameterJdbcTemplate.query(sql, map, new AngularUserRowMappper());
 
         if(!userList.isEmpty())
         {
@@ -67,13 +62,13 @@ public class Angular_ToDO_UserDaoImpl implements Angular_ToDO_UserDao {
     }
 
     @Override
-    public Integer createUser(Angular_UserRegisterRequest angular_userRegisterRequest) {
+    public Integer createUser(AngularToDoUser angularToDoUser) {
         String sql="INSERT INTO  Angular_ToDo_user( email, password, created_date, last_modified_date ) " +
                 " VALUES ( :email, :password, :createdDate, :lastModifiedDate )";
 
         Map<String, Object> map=new HashMap<>();
-        map.put("email", angular_userRegisterRequest.getEmail());
-        map.put("password", angular_userRegisterRequest.getPassword());
+        map.put("email", angularToDoUser.getEmail());
+        map.put("password", angularToDoUser.getPassword());
 
         Date now=new Date();
         map.put("createdDate", now);

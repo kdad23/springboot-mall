@@ -1,18 +1,16 @@
 package com.jason.springboot_mall.rowmapper;
 
-import com.jason.springboot_mall.constant.ProductCategory;
-import com.jason.springboot_mall.model.Angular_Note;
-import com.jason.springboot_mall.model.Product;
+import com.jason.springboot_mall.model.AngularNote;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Angular_Note_RowMapper implements RowMapper<Angular_Note> {
+public class AngularNoteRowMapper implements RowMapper<AngularNote> {
 
     @Override
-    public Angular_Note mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-        Angular_Note angular_note=new Angular_Note();
+    public AngularNote mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+        AngularNote angular_note=new AngularNote();
         angular_note.setNote_id(resultSet.getInt("note_id"));
         angular_note.setTitle(resultSet.getString("title"));
         angular_note.setDescription(resultSet.getString("description"));
