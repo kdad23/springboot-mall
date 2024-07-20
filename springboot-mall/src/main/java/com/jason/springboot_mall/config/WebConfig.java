@@ -21,6 +21,7 @@ public class WebConfig implements WebMvcConfigurer
                 .excludePathPatterns("/swagger-ui/**")
                 .excludePathPatterns("/angular/note/**")
                 .excludePathPatterns("/angular/notes/**")
+                .excludePathPatterns("/users/**")
                 .excludePathPatterns("/v3/**");
 
 
