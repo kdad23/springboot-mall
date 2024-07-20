@@ -8,3 +8,34 @@ INSERT INTO product (product_name, category, image_url, price, stock, descriptio
 INSERT INTO product (product_name, category, image_url, price, stock, description, created_date, last_modified_date) VALUES ('Tesla', 'CAR', 'https://cdn.pixabay.com/photo/2021/01/15/16/49/tesla-5919764_1280.jpg', 450000, 5, '世界最暢銷的充電式汽車', '2022-03-21 23:30:00', '2022-03-21 23:30:00');
 
 
+
+--------JPA 單元測試用----------
+
+INSERT INTO AngularToDo (title, description, created_date, last_modified_date) VALUES ('買Tesla',
+'世界最暢銷的充電式汽車', '2022-03-21 23:30:00', '2022-03-21 23:30:00');
+
+INSERT INTO AngularToDo (title, description, created_date, last_modified_date) VALUES ('買水果',
+'好吃的水果', '1990-03-21 23:30:00', '1990-03-21 23:30:00');
+
+INSERT INTO AngularToDo (title, description,
+created_date, last_modified_date) VALUES ('買電腦',
+'世界最棒的電腦', '2000-03-21 23:30:00', '2000-03-21 23:30:00');
+
+
+
+
+INSERT INTO AngularToDoUser (username, email, password, roles, accessToken, created_date, last_modified_date)
+ VALUES ('黑也', 'aaa@gmail.com', '111111',
+ 'ADMIN', 'aaa',  '2022-03-21 23:30:00', '2022-03-21 23:30:00');
+
+ INSERT INTO AngularToDoUser (username, email, password, roles, accessToken, created_date, last_modified_date)
+ VALUES ('上古', 'bbb@gmail.com', '111111',
+ '', 'bbb',  '2022-03-21 23:30:00', '2022-03-21 23:30:00');
+
+ INSERT INTO AngularToDoUser (username, email, password, roles, accessToken, created_date, last_modified_date)
+ VALUES ('勒布朗', 'ccc@gmail.com', '111111',
+ '', 'ccc',  '2022-03-21 23:30:00', '2022-03-21 23:30:00');
+
+
+
+

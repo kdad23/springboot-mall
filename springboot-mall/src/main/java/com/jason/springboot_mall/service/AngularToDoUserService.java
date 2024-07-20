@@ -9,4 +9,16 @@ public interface AngularToDoUserService {
     Integer register(AngularUserRegisterRequestDTO angular_userRegisterRequest);
 
     AngularUserResponseDTO login(AngularUserLoginRequestDTO angularUserLoginRequestDTO);
+
+
+
+    Integer registerByJPA(AngularUserRegisterRequestDTO angularUserRegisterRequestDTO);
+
+    AngularUserResponseDTO getUserByIdByJPA(Integer userId);
+
+
+    AngularUserResponseDTO loginByJPA(AngularUserLoginRequestDTO angularUserLoginRequestDTO);
+
+
+
 }

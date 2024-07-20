@@ -2,7 +2,7 @@ package com.jason.springboot_mall.dao.impl;
 
 import com.jason.springboot_mall.dao.AngularToDoNoteDao;
 import com.jason.springboot_mall.dto.AngularNoteRequest;
-import com.jason.springboot_mall.model.AngularNote;
+import com.jason.springboot_mall.model.AngularToDo;
 import com.jason.springboot_mall.rowmapper.AngularNoteRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -27,7 +27,7 @@ public class AngularToDoNoteDaoImpl implements AngularToDoNoteDao
     }
 
     @Override
-    public List<AngularNote> getNotes()
+    public List<AngularToDo> getNotes()
     {
         String sql="SELECT  note_id, title,  " +
                 "description, created_date, " +
@@ -36,7 +36,7 @@ public class AngularToDoNoteDaoImpl implements AngularToDoNoteDao
 
         Map<String, Object>map=new HashMap<>();
 
-        List<AngularNote> noteList = namedParameterJdbcTemplate.query(sql, map,
+        List<AngularToDo> noteList = namedParameterJdbcTemplate.query(sql, map,
                 new AngularNoteRowMapper());
 
         return noteList;
@@ -44,14 +44,14 @@ public class AngularToDoNoteDaoImpl implements AngularToDoNoteDao
 
 
     @Override
-    public AngularNote getNoteById(Integer noteId) {
+    public AngularToDo getNoteById(Integer noteId) {
         String sql="SELECT  note_id, title, description, " +
                 "created_date, last_modified_date " +
                 " FROM Angular_ToDo_note WHERE note_id=:noteId ";
 
         Map<String, Object>map=new HashMap<>();
         map.put("noteId", noteId);
-        List<AngularNote> noteList = namedParameterJdbcTemplate.query(sql, map,
+        List<AngularToDo> noteList = namedParameterJdbcTemplate.query(sql, map,
                 new AngularNoteRowMapper());
 
         if(!noteList.isEmpty())
@@ -66,14 +66,14 @@ public class AngularToDoNoteDaoImpl implements AngularToDoNoteDao
 
 
     @Override
-    public AngularNote getNoteByTitle(String noteTitle) {
+    public AngularToDo getNoteByTitle(String noteTitle) {
         String sql="SELECT  note_id, title, description, " +
                 "created_date, last_modified_date " +
                 " FROM Angular_ToDo_note WHERE title=:noteTitle ";
 
         Map<String, Object>map=new HashMap<>();
         map.put("noteTitle", noteTitle);
-        List<AngularNote> noteList = namedParameterJdbcTemplate.query(sql, map,
+        List<AngularToDo> noteList = namedParameterJdbcTemplate.query(sql, map,
                 new AngularNoteRowMapper());
 
         if(!noteList.isEmpty())

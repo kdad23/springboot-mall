@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS product
     last_modified_date TIMESTAMP    NOT NULL
 );
 
--- H2 資料庫用
+----------------- H2 資料庫用
 CREATE TABLE IF NOT EXISTS user
 (
     user_id            INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -21,4 +21,37 @@ CREATE TABLE IF NOT EXISTS user
     created_date       TIMESTAMP    NOT NULL,
     last_modified_date TIMESTAMP    NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS AngularToDoUser
+(
+    user_id            INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username           VARCHAR(30),
+    email              VARCHAR(256)  UNIQUE ,
+    password           VARCHAR(256) ,
+    created_date       TIMESTAMP     DEFAULT CURRENT_TIMESTAMP ,
+    last_modified_date TIMESTAMP    DEFAULT CURRENT_TIMESTAMP ,
+    roles              VARCHAR(30) ,
+    accessToken        VARCHAR(256)
+
+);
+--
+--
+CREATE TABLE IF NOT EXISTS AngularToDo
+(
+    note_id            INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title              VARCHAR(256) ,
+    description        VARCHAR(256)  ,
+    created_date       TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    last_modified_date TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+--
+--DROP TABLE AngularToDo;
+--DROP TABLE AngularToDoUser;
+
+
+
+
 

@@ -1,15 +1,22 @@
-package com.jason.springboot_mall.model;
+package com.jason.springboot_mall.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
 
-public class AngularNote
+@Schema(title = "待辦事項回應參數DTO")
+public class AngularToDoDTO
 {
+    @Schema(title = "待辦事項Id")
     private Integer note_id;
+    @Schema(title = "待辦事項Title")
     private String title;
+    @Schema(title = "待辦事項詳細訊息")
     private String description;
+    @Schema(title = "待辦事項建立時間")
     private Date createdDate;
+    @Schema(title = "待辦事項修改時間")
     private Date lastModifiedDate;
-
 
     public Integer getNote_id() {
         return note_id;
