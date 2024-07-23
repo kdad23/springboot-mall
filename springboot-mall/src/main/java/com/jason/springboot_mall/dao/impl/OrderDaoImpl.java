@@ -1,7 +1,10 @@
 package com.jason.springboot_mall.dao.impl;
 
 import com.jason.springboot_mall.dao.OrderDao;
+import com.jason.springboot_mall.model.Order;
 import com.jason.springboot_mall.model.OrderItem;
+import com.jason.springboot_mall.rowmapper.OrderItemRowMapper;
+import com.jason.springboot_mall.rowmapper.OrderRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,6 +23,50 @@ public class OrderDaoImpl implements OrderDao
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+
+    @Override
+    public Order getOrderById(Integer orderId)
+    {
+        // order表名要有 `` 雙引號
+        String sql="SELECT order_id, user_id, total_amount, created_date," +
+                " last_modified_date " +
+                " FROM `order` WHERE  order_id=:orderId ";
+
+        Map<String, Object> map=new HashMap<>();
+        map.put("orderId", orderId);
+        List<Order> orderList=namedParameterJdbcTemplate.query(sql, map, new OrderRowMapper());
+        if(orderList.size() > 0)
+        {
+            return orderList.get(0);
+        }
+        else
+        {
+            return null;
+
+        }
+    }
+
+
+    @Override
+    public List<OrderItem> getOrderItemByOrderId(Integer orderId)
+    {
+        // order表名要有 `` 雙引號
+        String sql="SELECT oi.order_item_id, oi.order_id, oi.product_id, oi.quantity           , " +
+                "oi.amount, p" +
+                ".product_name,  " +
+                " p.image_url  " +
+                " FROM order_item as oi  "  +
+                " LEFT JOIN product as p ON oi.product_id=p.product_id " +
+                " WHERE  oi.order_id=:orderId ";
+
+        Map<String, Object> map=new HashMap<>();
+        map.put("orderId", orderId);
+
+        List<OrderItem> orderItemList=namedParameterJdbcTemplate.query(sql, map,
+                new OrderItemRowMapper());
+
+        return orderItemList;
+    }
 
     @Override
     public Integer createOrder(Integer userId, Integer totalAmount)

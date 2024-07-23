@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Schema(title = "order訂單")
 @Entity
@@ -28,6 +29,9 @@ public class Order
     @Schema(title = "最後修改時間")
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
+
+    @OneToMany
+    private List<OrderItem> orderItemList;
 
 
     public Integer getOrderId() {
@@ -68,5 +72,13 @@ public class Order
 
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 }
